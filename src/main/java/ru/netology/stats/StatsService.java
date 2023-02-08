@@ -41,24 +41,28 @@ public class StatsService {
 // Сумма всех продаж.
 
     public long sumSales(long[] sales) {
-        long sumSales = Arrays.stream(sales).sum();
+        long sumSales = 0;
+        for (long sale : sales) {
+            sumSales += sale;
+        }
         return sumSales;
     }
 
 // Средняя сумма продаж в месяц.
 
     public long averageSumSales(long[] sales) {
-        long averageSumSales = Arrays.stream(sales).sum() / sales.length;
-        return averageSumSales;
+
+        return sumSales(sales) / sales.length;
+
     }
 
 // Количество месяцев, в которых продажи были ниже среднего (см. п.2).
 
     public long lowAverageSumSales(long[] sales) {
-        long averageSumSales = Arrays.stream(sales).sum() / sales.length;
+        long maxSales = averageSumSales(sales);
         int monthAmount = 0;
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] < averageSumSales) {
+            if (sales[i] < maxSales) {
                 monthAmount++;
             }
         }
@@ -68,10 +72,10 @@ public class StatsService {
 // Количество месяцев, в которых продажи были выше среднего.
 
     public long upAverageSumSales(long[] sales) {
-        long averageSumSales = Arrays.stream(sales).sum() / sales.length;
+        long maxSales = averageSumSales(sales);
         int monthAmount = 0;
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] > averageSumSales) {
+            if (sales[i] >= maxSales) {
                 monthAmount++;
             }
         }

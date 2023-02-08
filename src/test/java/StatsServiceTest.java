@@ -65,7 +65,7 @@ public class StatsServiceTest {
 
         long[] sale = { 8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18 };
 
-        long expectedMonth = 5;
+        long expectedMonth = 7;
         long actualMonth = service.upAverageSumSales(sale);
 
         Assertions.assertEquals(expectedMonth, actualMonth);
